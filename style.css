@@ -1,0 +1,50 @@
+/* ACOTAR-style dark theme */
+body {
+    background-color: #1e1e2f;
+    color: #f2f2f2;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #2a2a3d;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(200, 150, 255, 0.1);
+}
+
+h1, h2 {
+    color: #d4bfff;
+    border-bottom: 1px solid #444;
+    padding-bottom: 8px;
+}
+
+ul, ol {
+    padding-left: 20px;
+}
+
+a {
+    color: #9bdfff;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+pre {
+    background-color: #141421;
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #d0d0d0;
+}
+
+code {
+    white-space: pre-wrap;
+    display: block;
+}
