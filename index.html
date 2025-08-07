@@ -1,78 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Bookstore Data Project</title>
+  <meta charset="UTF-8">
+  <title>ACOTAR Bookstore</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Online Bookstore Data Project</h1>
+  <h1>ACOTAR Bookstore</h1>
+  <div id="book-list"></div>
 
-    <h2>Project Files</h2>
-    <ul>
-        <li><a href="bookstore.xsd" target="_blank">XML Schema (bookstore.xsd)</a></li>
-        <li><a href="bookstore.xml" target="_blank">Bookstore XML Data (bookstore.xml)</a></li>
-        <li><a href="books.json" target="_blank">Bookstore JSON Data (books.json)</a></li>
-    </ul>
+  <script>
+    fetch('books.json')
+      .then(response => response.json())
+      .then(data => {
+        const bookList = document.getElementById('book-list');
+        data.books.forEach(book => {
+          const bookDiv = document.createElement('div');
+          bookDiv.className = 'book-card';
 
-    <h2>Book Titles Included</h2>
-    <ol>
-        <li>A Court of Thorns and Roses (2015)</li>
-        <li>A Court of Mist and Fury (2016)</li>
-        <li>A Court of Wings and Ruin (2017)</li>
-    </ol>
+          bookDiv.innerHTML = `
+            <h2>${book.title}</h2>
+            <p><strong>Author:</strong> ${book.author.firstName} ${book.author.lastName}</p>
+            <p><strong>Year:</strong> ${book.publicationYear}</p>
+            <p><strong>Publisher:</strong> ${book.details.publisher}</p>
+            <p><strong>Pages:</strong> ${book.details.pageCount}</p>
+            <p><strong>Available:</strong> ${book.details.available ? "✅ Yes" : "❌ No"}</p>
+          `;
 
-    <h2>Formatted JSON Preview</h2>
-    <pre>
-{
-  "books": [
-    {
-      "title": "A Court of Thorns and Roses",
-      "author": {
-        "firstName": "Sarah",
-        "lastName": "Maas"
-      },
-      "publicationYear": 2015,
-      "details": {
-        "publisher": "Bloomsbury Publishing",
-        "pageCount": 432,
-        "available": true
-      }
-    },
-    {
-      "title": "A Court of Mist and Fury",
-      "author": {
-        "firstName": "Sarah",
-        "lastName": "Maas"
-      },
-      "publicationYear": 2016,
-      "details": {
-        "publisher": "Bloomsbury Publishing",
-        "pageCount": 624,
-        "available": false
-      }
-    },
-    {
-      "title": "A Court of Wings and Ruin",
-      "author": {
-        "firstName": "Sarah",
-        "lastName": "Maas"
-      },
-      "publicationYear": 2017,
-      "details": {
-        "publisher": "Bloomsbury Publishing",
-        "pageCount": 699,
-        "available": true
-      }
-    }
-  ]
-}
-    </pre>
-
-    <h2>Developer Notes</h2>
-    <p>
-        This project demonstrates the use of XML Schema (XSD), XML, and JSON for managing the catalog of an online bookstore.
-        All data shown is based on the <em>A Court of Thorns and Roses</em> series by Sarah J. Maas.
-    </p>
-
+          bookList.appendChild(bookDiv);
+        });
+      })
+      .catch(error => {
+        console.error("Failed to load JSON:", error);
+      });
+  </script>
 </body>
 </html>
